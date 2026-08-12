@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+  <title>Govind Bhai TM</title>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    font-family: "Outfit", sans-serif;
+    color: #fff;
+    background:
+      linear-gradient(
+        135deg,
+        rgba(3, 4, 7, 0.76),
+        rgba(15, 11, 3, 0.72),
+        rgba(3, 4, 7, 0.86)
+      ),
+      url("bg-image.jpg") center / cover no-repeat;
+    background-attachment: fixed;
+    position: relative;
+  }
+
+  .page {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px 15px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .card {
+    width: min(525px, 100%);
+    min-height: 900px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 72px 42px 55px;
+    border-radius: 45px;
+        background:
+      linear-gradient(145deg, rgb(18 33 37) 0%, rgb(10 18 22) 45%, rgb(11 28 38) 100%);
+    border: 2px solid #4C0084;
+    /* box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.025) inset,
+      0 25px 80px rgba(0, 0, 0, 0.70),
+      0 0 70px rgba(243, 177, 14, 0.10); */
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    animation: cardAppear 0.9s ease-out;
+  }
+
+  .card::before {
+    content: "";
+    position: absolute;
+    top: -190px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 500px;
+    height: 390px;
+    background:
+      radial-gradient(
+        ellipse,
+        rgba(122, 61, 181, 0.14) 0%,
+        rgba(76, 0, 132, 0.06) 35%,
+        transparent 72%
+      );
+    pointer-events: none;
+    animation: cardGlow 4s ease-in-out infinite alternate;
+  }
+
+  .card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background:
+      linear-gradient(
+        135deg,
+        rgba(184, 153, 217, 0.08),
+        transparent 25%,
+        transparent 70%,
+        rgba(122, 61, 181, 0.07)
+      );
+    pointer-events: none;
+  }
+
+
+  .logo-wrapper {
+    width: 205px;
+    height: 205px;
+    padding: 7px;
+    border-radius: 50%;
+    background:
+      linear-gradient(
+        135deg,
+        #d9c9e8 0%,
+        #b897d9 18%,
+        #7a3db5 40%,
+        #4C0084 62%,
+        #7a3db5 82%,
+        #d9c9e8 100%
+      );
+    box-shadow:
+      0 0 20px rgba(122, 61, 181, 0.35),
+      0 0 45px rgba(122, 61, 181, 0.14);
+    position: relative;
+    z-index: 2;
+    animation:
+      logoGlow 3s ease-in-out infinite alternate,
+      logoFloat 4s ease-in-out infinite;
+  }
+
+  .logo-wrapper img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #0d0c08;
+    background: #0d0c08;
+  }
+
+  h1 {
+    font-size: clamp(38px, 8vw, 49px);
+    line-height: 1.05;
+    font-weight: 700;
+    letter-spacing: -1.8px;
+    text-align: center;
+    background:
+      linear-gradient(
+        135deg,
+        #d9c9e8 0%,
+        #b897d9 25%,
+        #7a3db5 55%,
+        #c9b4dd 80%,
+        #7a3db5 100%
+      );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+    z-index: 2;
+    animation: textAppear 1s ease-out 0.2s both;
+  }
+
+  .description {
+    width: 100%;
+    max-width: 430px;
+    margin-top: 28px;
+    font-size: 20px;
+    line-height: 1.75;
+    font-weight: 400;
+    color: rgba(245, 238, 216, 0.72);
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    animation: textAppear 1s ease-out 0.4s both;
+  }
+
+  .telegram-button {
+    width: 100%;
+    max-width: 392px;
+    height: 78px;
+    margin-top: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    background:
+      linear-gradient(
+        100deg,
+        #2d0052 0%,
+        #4C0084 18%,
+        #7a3db5 38%,
+        #b897d9 55%,
+        #7a3db5 70%,
+        #4C0084 86%,
+        #2d0052 100%
+      );
+    color: #f5f5f5;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: 0.3px;
+    box-shadow:
+      0 12px 35px rgba(122, 61, 181, 0.28),
+      0 0 35px rgba(122, 61, 181, 0.12);
+    transition:
+      transform 0.25s ease,
+      box-shadow 0.25s ease,
+      filter 0.25s ease;
+    position: relative;
+    overflow: hidden;
+    z-index: 2;
+    animation:
+      buttonAppear 1s ease-out 0.6s both,
+      buttonPulse 3s ease-in-out 2s infinite;
+  }
+
+  .telegram-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 65%;
+    height: 100%;
+    background:
+      linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.38),
+        transparent
+      );
+    transform: skewX(-20deg);
+    animation: buttonShine 4s ease-in-out infinite;
+  }
+
+  .telegram-button:hover {
+    transform: translateY(-4px) scale(1.02);
+    filter: brightness(1.08);
+    box-shadow:
+      0 16px 45px rgba(122, 61, 181, 0.42),
+      0 0 50px rgba(122, 61, 181, 0.22);
+  }
+
+  .telegram-button:active {
+    transform: scale(0.98);
+  }
+
+  .copyright {
+    margin-top: 48px;
+    font-size: 16px;
+    font-weight: 600;
+    color: rgba(230, 218, 185, 0.48);
+    letter-spacing: 0.3px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    animation: textAppear 1s ease-out 0.8s both;
+  }
+
+  @keyframes cardAppear {
+    from {
+      opacity: 0;
+      transform: translateY(35px) scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @keyframes textAppear {
+    from {
+      opacity: 0;
+      transform: translateY(15px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+
+  @keyframes buttonAppear {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+
+  @keyframes logoGlow {
+    from {
+      box-shadow:
+        0 0 15px rgba(122, 61, 181, 0.25),
+        0 0 30px rgba(122, 61, 181, 0.08);
+    }
+    to {
+      box-shadow:
+        0 0 30px rgba(122, 61, 181, 0.48),
+        0 0 60px rgba(122, 61, 181, 0.18);
+    }
+  }
+
+
+  @keyframes logoFloat {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-6px);
+    }
+  }
+
+
+  @keyframes backgroundGlow {
+    from {
+      opacity: 0.55;
+      transform: translate(-50%, -50%) scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+  }
+
+
+  @keyframes cardGlow {
+    from {
+      opacity: 0.55;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+
+  @keyframes buttonShine {
+    0% {
+      left: -120%;
+    }
+    35%,
+    100% {
+      left: 140%;
+    }
+  }
+
+
+  @keyframes buttonPulse {
+    0%,
+    100% {
+      box-shadow:
+        0 12px 35px rgba(122, 61, 181, 0.25),
+        0 0 35px rgba(122, 61, 181, 0.12);
+    }
+    50% {
+      box-shadow:
+        0 14px 42px rgba(122, 61, 181, 0.38),
+        0 0 50px rgba(122, 61, 181, 0.18);
+    }
+  }
+
+
+  @media (max-width: 600px) {
+    body {
+      background-attachment: scroll;
+    }
+    .page {
+      min-height: 100vh;
+      padding: 14px 10px;
+    }
+    .card {
+      width: 100%;
+      min-height: 80vh;
+      padding: 42px 22px 38px;
+      border-radius: 30px;
+    }
+    .logo-wrapper {
+      width: 155px;
+      height: 155px;
+      padding: 6px;
+    }
+    .logo-wrapper img {
+      border-width: 3px;
+    }
+    h1 {
+      font-size: 35px;
+      letter-spacing: -1.2px;
+    }
+    .description {
+      max-width: 340px;
+      margin-top: 22px;
+      font-size: 17px;
+      line-height: 1.7;
+    }
+
+    .telegram-button {
+      max-width: 340px;
+      height: 65px;
+      margin-top: 32px;
+      font-size: 16px;
+    }
+    .copyright {
+      margin-top: 34px;
+      font-size: 14px;
+    }
+  }
+
+
+
+  @media (max-width: 380px) {
+    .page {
+      padding: 10px 8px;
+    }
+    .card {
+      padding:
+        35px
+        17px
+        32px;
+
+      border-radius: 27px;
+    }
+    .logo-wrapper {
+      width: 135px;
+      height: 135px;
+    }
+    h1 {
+      font-size: 30px;
+    }
+    .description {
+      margin-top: 20px;
+      max-width: 300px;
+      font-size: 15px;
+      line-height: 1.65;
+    }
+
+    .telegram-button {
+      height: 59px;
+      margin-top: 29px;
+      font-size: 14px;
+    }
+    .copyright {
+      margin-top: 30px;
+      font-size: 12px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+</style>
+</head>
+<body>
+  <main class="page">
+    <section class="card">
+      <div class="logo-wrapper">
+        <img
+          src="govind-bhai.jpg"
+          alt="Govind Bhai Cricket Logo"
+        >
+      </div>
+      <div>
+          <h1>Govind Bhai TM</h1>
+          <p class="description">
+            Get expert cricket predictions and
+            match analysis from Govind Bhai.
+            Join our Telegram for daily
+            winning tips.
+          </p>
+          <a
+            class="telegram-button"
+            href="https://t.me/+6fUnZWM1Q44xZTU1"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            JOIN TELEGRAM NOW
+          </a>
+      </div>
+      <div class="copyright">
+        © 2026 Govind Bhai TM
+      </div>
+    </section>
+
+  </main>
+
+</body>
+</html>
